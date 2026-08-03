@@ -1,0 +1,13 @@
+<div class="card-item flex flex-col justify-between ml-12">
+  <img class="card-item-image" [src]="item().photoUrl" alt="" />
+
+  <div class="card-item-label text-[28px] leading-[110%] font-light">
+    {{ item().title }}
+  </div>
+
+  <div
+    class="card-item-text text-center my-auto text-[16px] leading-[130%] font-light tracking-[5%]"
+  >
+    {{ item().text }}
+  </div>
+</div>
