@@ -18,7 +18,7 @@ export class App {
   items = signal<Item[]>([
     {
       title: 'Automate and\noptimize operation\neffortlessly',
-      photoUrl: '/icon1.svg',
+      photoUrl: 'icon1.svg',
       text: `The platform integrates advanced
       Al tools into everyday business
       activities, making them intuitive,
@@ -29,7 +29,7 @@ export class App {
     },
     {
       title: 'Acces and\ndevelop AI-driven\nsolutions',
-      photoUrl: '/icon2.svg',
+      photoUrl: 'icon2.svg',
       text: `The platform integrates advanced
       Al tools into everyday business
       activities, making them intuitive,
@@ -40,7 +40,7 @@ export class App {
     },
     {
       title: 'Build global partnership',
-      photoUrl: '/icon3.svg',
+      photoUrl: 'icon3.svg',
       text: `The platform integrates advanced
       Al tools into everyday business
       activities, making them intuitive,
