@@ -20,6 +20,10 @@ body {
   padding: 2.5rem var(--mobile-inset-x);
 }
 
+html {
+  background-color: #000;
+}
+
 html,
 body {
   width: 100%;
