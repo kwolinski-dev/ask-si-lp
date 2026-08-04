@@ -13,13 +13,13 @@
 .card-item-label {
   white-space: pre-line;
   opacity: 1;
-  transition: opacity 0.35s ease 0.18s;
+  transition: opacity 0.5s ease-in-out 0.25s;
 }
 
 .card-item-image {
   width: 100px;
   height: 100px;
-  transition: opacity 0.35s ease 0.18s;
+  transition: opacity 0.5s ease-in-out 0.25s;
 }
 
 .card-item-text {
@@ -31,30 +31,28 @@
   justify-content: center;
   text-align: center;
   opacity: 0;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.5s ease-in-out 0.25s;
 }
 
 .card-item:hover .card-item-image,
 .card-item:hover .card-item-label {
   opacity: 0;
-  transition: opacity 0.35s ease;
 }
 
 .card-item:hover .card-item-text {
   opacity: 1;
-  transition: opacity 0.35s ease 0.18s;
 }
 
 @media (width < 48rem) {
   .card-item.active .card-item-image,
   .card-item.active .card-item-label {
     opacity: 0;
-    transition: opacity 0.35s ease;
+    transition: opacity 0.5s ease-in-out 0.25s;
   }
 
   .card-item.active .card-item-text {
     opacity: 1;
-    transition: opacity 0.35s ease 0.18s;
+    transition: opacity 0.5s ease-in-out 0.25s;
   }
 }
 
@@ -62,6 +60,6 @@
     .card-item-image {
         width: 64px;
         height: 64px;
-        transition: opacity 0.35s ease 0.18s;
+        transition: opacity 0.5s ease-in-out 0.25s;
     }
 }

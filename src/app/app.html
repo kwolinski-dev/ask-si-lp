@@ -14,7 +14,7 @@
       </div>
 
       <div
-        class="font-bold text-[#FFFFFF] opacity-70 mt-4 leading-[120%] md:mt-10 md:text-[28px] md:leading-[125%]"
+        class="font-bold text-[#FFFFFF] opacity-70 mt-4 text-lg leading-[120%] md:mt-10 md:text-[28px] md:leading-[125%]"
       >
         <p>Supercharge for your</p>
         <p>business with Ask SI.</p>
@@ -24,6 +24,7 @@
     <div class="flex overflow-y-hidden overflow-x-scroll mb-12 md:mb-0 md:overflow-hidden">
       @for (item of items(); track $index) {
         <app-card-item
+          [class]="$index === 0 ? 'md:ml-12' : 'ml-12'"
           [item]="item"
           [active]="activeCardIndex() === $index"
           (cardClicked)="toggleActiveCard($index)"
@@ -36,7 +37,15 @@
     <div class="contact-track">
       <div>Got questions?</div>
       <div class="contact-line"></div>
-      <a class="mail-link" href="mailto:info@asksi.com">info@asksi.com</a>
+      <div class="mail-hit" (click)="copyEmail()">
+        <div class="mail-icon-wrap">
+          <img src="copie.svg" alt="" class="mail-icon" [class.mail-icon--hidden]="copied()" />
+        </div>
+        <div class="mail-link">
+          <span class="mail-text" [class.mail-text--exit-up]="copied()">info@asksi.com</span>
+          <span class="mail-text" [class.mail-text--exit-down]="!copied()">copied</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
