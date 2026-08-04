@@ -23,6 +23,11 @@ export class App {
 
   activeCardIndices = signal<ReadonlySet<number>>(new Set());
   copied = signal(false);
+  isDraggingCards = signal(false);
+
+  private dragStartX = 0;
+  private dragStartScrollLeft = 0;
+  private dragMoved = false;
 
   items = signal<Item[]>([
     {
@@ -59,6 +64,41 @@ export class App {
       maturity.`,
     },
   ]);
+
+  onCardClicked(index: number): void {
+    if (this.dragMoved) {
+      return;
+    }
+
+    this.toggleActiveCard(index);
+  }
+
+  onCardsDragStart(event: MouseEvent): void {
+    const el = event.currentTarget as HTMLElement;
+    this.isDraggingCards.set(true);
+    this.dragMoved = false;
+    this.dragStartX = event.pageX;
+    this.dragStartScrollLeft = el.scrollLeft;
+  }
+
+  onCardsDragMove(event: MouseEvent): void {
+    if (!this.isDraggingCards()) {
+      return;
+    }
+
+    const el = event.currentTarget as HTMLElement;
+    const delta = event.pageX - this.dragStartX;
+    if (Math.abs(delta) > 3) {
+      this.dragMoved = true;
+    }
+
+    el.scrollLeft = this.dragStartScrollLeft - delta;
+    event.preventDefault();
+  }
+
+  onCardsDragEnd(): void {
+    this.isDraggingCards.set(false);
+  }
 
   toggleActiveCard(index: number): void {
     if (this.activeCardIndices().has(index)) {

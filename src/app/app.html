@@ -21,13 +21,20 @@
       </div>
     </div>
 
-    <div class="card-items-row flex overflow-y-hidden overflow-x-scroll mb-12 md:mb-0 md:overflow-hidden">
+    <div
+      class="card-items-row flex overflow-y-hidden overflow-x-scroll mb-12 md:mb-0"
+      [class.card-items-row--dragging]="isDraggingCards()"
+      (mousedown)="onCardsDragStart($event)"
+      (mousemove)="onCardsDragMove($event)"
+      (mouseup)="onCardsDragEnd()"
+      (mouseleave)="onCardsDragEnd()"
+    >
       @for (item of items(); track $index) {
         <app-card-item
           [class]="$index === 0 ? 'md:ml-12' : 'ml-12'"
           [item]="item"
           [active]="activeCardIndices().has($index)"
-          (cardClicked)="toggleActiveCard($index)"
+          (cardClicked)="onCardClicked($index)"
         />
       }
     </div>

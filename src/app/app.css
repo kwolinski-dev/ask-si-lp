@@ -114,6 +114,21 @@
   pointer-events: none;
 }
 
+.card-items-row {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+}
+
+.card-items-row--dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.card-items-row::-webkit-scrollbar {
+  display: none;
+}
+
 @media (width < 48rem) {
   .wd-container {
     height: auto;
