@@ -4,7 +4,7 @@
   </div>
 
   <div
-    class="w-full flex mt-12 h-[693px] flex-col justify-between md:h-[503px] md:flex-row md:mt-0 md:items-end"
+    class="w-full flex mt-12 min-h-[693px] flex-col justify-between md:h-[503px] md:min-h-0 md:flex-row md:mt-0 md:items-end"
   >
     <div>
       <div class="text-5xl leading-[110%] md:text-[82px] md:leading-[100%]">
@@ -21,19 +21,19 @@
       </div>
     </div>
 
-    <div class="flex overflow-y-hidden overflow-x-scroll mb-12 md:mb-0 md:overflow-hidden">
+    <div class="card-items-row flex overflow-y-hidden overflow-x-scroll mb-12 md:mb-0 md:overflow-hidden">
       @for (item of items(); track $index) {
         <app-card-item
           [class]="$index === 0 ? 'md:ml-12' : 'ml-12'"
           [item]="item"
-          [active]="activeCardIndex() === $index"
+          [active]="activeCardIndices().has($index)"
           (cardClicked)="toggleActiveCard($index)"
         />
       }
     </div>
   </div>
 
-  <div class="w-full flex items-center gap-4 pr-5 md:mr-0 md:text-2xl">
+  <div class="w-full flex items-center gap-4 md:text-2xl">
     <div class="contact-track">
       <div>Got questions?</div>
       <div class="contact-line"></div>

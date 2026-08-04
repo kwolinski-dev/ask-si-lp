@@ -18,8 +18,10 @@ export interface Item {
 export class App {
   private readonly platformId = inject(PLATFORM_ID);
   private copiedTimeoutId?: ReturnType<typeof setTimeout>;
+  private readonly cardTimeouts = new Map<number, ReturnType<typeof setTimeout>>();
+  private static readonly CARD_ACTIVE_DURATION = 8000;
 
-  activeCardIndex = signal<number | null>(null);
+  activeCardIndices = signal<ReadonlySet<number>>(new Set());
   copied = signal(false);
 
   items = signal<Item[]>([
@@ -59,7 +61,26 @@ export class App {
   ]);
 
   toggleActiveCard(index: number): void {
-    this.activeCardIndex.update((current) => (current === index ? null : index));
+    if (this.activeCardIndices().has(index)) {
+      this.deactivateCard(index);
+      return;
+    }
+
+    this.activeCardIndices.update((current) => new Set(current).add(index));
+    this.cardTimeouts.set(
+      index,
+      setTimeout(() => this.deactivateCard(index), App.CARD_ACTIVE_DURATION),
+    );
+  }
+
+  private deactivateCard(index: number): void {
+    clearTimeout(this.cardTimeouts.get(index));
+    this.cardTimeouts.delete(index);
+    this.activeCardIndices.update((current) => {
+      const next = new Set(current);
+      next.delete(index);
+      return next;
+    });
   }
 
   copyEmail(): void {

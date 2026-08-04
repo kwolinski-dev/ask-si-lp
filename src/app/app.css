@@ -1,3 +1,8 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
 .wd-container{
   max-width: 1440px;
   height: 100%;
@@ -5,7 +10,7 @@
   display: flex;
   flex-direction: column;
   color: var(--wd-white);
- justify-content: space-between;  
+ justify-content: space-between;
 }
 
 .contact-track {
@@ -107,4 +112,18 @@
   opacity: 0;
   transform: translateY(100%);
   pointer-events: none;
+}
+
+@media (width < 48rem) {
+  .wd-container {
+    height: auto;
+    min-height: 100%;
+  }
+
+  .card-items-row {
+    margin-left: calc(-1 * var(--mobile-inset-x));
+    margin-right: calc(-1 * var(--mobile-inset-x));
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }

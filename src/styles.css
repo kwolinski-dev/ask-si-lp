@@ -4,6 +4,7 @@
 
 :root {
   --wd-white: #fbfbfb;
+  --mobile-inset-x: 20px;
 }
 
 body {
@@ -16,13 +17,21 @@ body {
   color: var(--wd-white);
   background-blend-mode: multiply, normal;
   font-family: 'neue-haas-grotesk-display';
-  padding: 2.5rem 0 2.5rem 20px;
+  padding: 2.5rem var(--mobile-inset-x);
 }
 
 html,
 body {
   width: 100%;
   height: 100%;
+}
+
+@media (width < 48rem) {
+  html,
+  body {
+    height: auto;
+    min-height: 100dvh;
+  }
 }
 
 @media (width >= 48rem){
