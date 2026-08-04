@@ -15,6 +15,8 @@ export interface Item {
   styleUrl: './app.css',
 })
 export class App {
+  activeCardIndex = signal<number | null>(null);
+
   items = signal<Item[]>([
     {
       title: 'Automate and\noptimize operation\neffortlessly',
@@ -50,4 +52,8 @@ export class App {
       maturity.`,
     },
   ]);
+
+  toggleActiveCard(index: number): void {
+    this.activeCardIndex.update((current) => (current === index ? null : index));
+  }
 }

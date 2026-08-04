@@ -23,7 +23,11 @@
 
     <div class="flex overflow-y-hidden overflow-x-scroll mb-12 md:mb-0 md:overflow-hidden">
       @for (item of items(); track $index) {
-        <app-card-item [item]="item" />
+        <app-card-item
+          [item]="item"
+          [active]="activeCardIndex() === $index"
+          (cardClicked)="toggleActiveCard($index)"
+        />
       }
     </div>
   </div>

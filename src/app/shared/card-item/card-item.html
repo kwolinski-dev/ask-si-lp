@@ -1,4 +1,8 @@
-<div class="card-item flex flex-col justify-between ml-12">
+<div
+  class="card-item flex flex-col justify-between ml-12"
+  [class.active]="active()"
+  (click)="onCardClick()"
+>
   <img class="card-item-image" [src]="item().photoUrl" alt="" />
 
   <div class="card-item-label text-[28px] leading-[110%] font-light">

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Item } from '../../app';
 
 @Component({
@@ -9,4 +9,10 @@ import { Item } from '../../app';
 })
 export class CardItem {
   item = input.required<Item>();
+  active = input(false);
+  cardClicked = output<void>();
+
+  onCardClick(): void {
+    this.cardClicked.emit();
+  }
 }

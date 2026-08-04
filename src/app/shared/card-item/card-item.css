@@ -13,14 +13,13 @@
 .card-item-label {
   white-space: pre-line;
   opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.35s ease-in-out 0.18s, transform 0.35s ease-in-out 0.18s;
+  transition: opacity 0.35s ease 0.18s;
 }
 
 .card-item-image {
   width: 100px;
   height: 100px;
-  transition: opacity 0.35s ease-in-out 0.18s, transform 0.35s ease-in-out 0.18s;
+  transition: opacity 0.35s ease 0.18s;
 }
 
 .card-item-text {
@@ -32,27 +31,37 @@
   justify-content: center;
   text-align: center;
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
+  transition: opacity 0.35s ease;
 }
 
 .card-item:hover .card-item-image,
 .card-item:hover .card-item-label {
   opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
+  transition: opacity 0.35s ease;
 }
 
 .card-item:hover .card-item-text {
   opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.35s ease-in-out 0.18s, transform 0.35s ease-in-out 0.18s;
+  transition: opacity 0.35s ease 0.18s;
+}
+
+@media (width < 48rem) {
+  .card-item.active .card-item-image,
+  .card-item.active .card-item-label {
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .card-item.active .card-item-text {
+    opacity: 1;
+    transition: opacity 0.35s ease 0.18s;
+  }
 }
 
 @media (width >= 48rem){
     .card-item-image {
         width: 64px;
         height: 64px;
-        transition: opacity 0.35s ease-in-out 0.18s, transform 0.35s ease-in-out 0.18s;
+        transition: opacity 0.35s ease 0.18s;
     }
 }
