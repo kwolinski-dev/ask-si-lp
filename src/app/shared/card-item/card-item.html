@@ -1,17 +1,21 @@
-<div
+<button
+  type="button"
   class="card-item flex flex-col justify-between"
   [class.active]="active()"
+  [attr.aria-labelledby]="labelId"
+  [attr.aria-describedby]="textId"
   (click)="onCardClick()"
 >
   <img class="card-item-image" [src]="item().photoUrl" alt="" />
 
-  <div class="card-item-label text-[28px] leading-[110%] font-light">
+  <span [id]="labelId" class="card-item-label text-[28px] leading-[110%] font-light">
     {{ item().title }}
-  </div>
+  </span>
 
-  <div
+  <span
+    [id]="textId"
     class="card-item-text my-auto text-[16px] leading-[130%] font-light tracking-[0.06em]"
   >
     {{ item().text }}
-  </div>
-</div>
+  </span>
+</button>

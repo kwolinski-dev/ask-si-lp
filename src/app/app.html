@@ -1,24 +1,22 @@
 <div class="wd-container">
-  <div class="w-full">
-    <img src="LogoAskSI.svg" alt="Ask SI logo" class="wd-img" class="w-auto h-7 md:h-10" />
-  </div>
+  <header class="w-full">
+    <img src="LogoAskSI.svg" alt="Ask SI" class="wd-img" />
+  </header>
 
-  <div
+  <main
     class="hero-row w-full flex mt-12 flex-col justify-between wide:h-[503px] wide:min-h-0 wide:flex-row wide:mt-0 wide:items-end"
   >
     <div>
-      <div class="hero-headline whitespace-nowrap">
-        <p class="font-bold">Let's build</p>
-        <p class="font-bold">the future.</p>
-        <p class="font-light">Faster.</p>
-      </div>
+      <h1 class="hero-headline whitespace-nowrap">
+        <span class="block font-bold">Let's build</span>
+        <span class="block font-bold">the future.</span>
+        <span class="block font-light">Faster.</span>
+      </h1>
 
-      <div
-        class="hero-subheadline whitespace-nowrap font-bold text-[#FFFFFF] opacity-70"
-      >
-        <p>Supercharge your</p>
-        <p>business with Ask SI.</p>
-      </div>
+      <p class="hero-subheadline whitespace-nowrap font-bold text-[#FFFFFF] opacity-70">
+        <span class="block">Supercharge your</span>
+        <span class="block">business with Ask SI.</span>
+      </p>
     </div>
 
     <div
@@ -38,21 +36,29 @@
         />
       }
     </div>
-  </div>
+  </main>
 
-  <div class="w-full flex items-center gap-4">
+  <footer class="w-full flex items-center gap-4">
     <div class="contact-track">
       <div>Got questions?</div>
-      <div class="contact-line"></div>
-      <div class="mail-hit" (click)="copyEmail()">
-        <div class="mail-icon-wrap">
+      <div class="contact-line" aria-hidden="true"></div>
+      <button
+        type="button"
+        class="mail-hit"
+        aria-label="Copy email address info@asksi.com"
+        (click)="copyEmail()"
+      >
+        <span class="mail-icon-wrap" aria-hidden="true">
           <img src="copie.svg" alt="" class="mail-icon" [class.mail-icon--hidden]="copied()" />
-        </div>
-        <div class="mail-link">
+        </span>
+        <span class="mail-link" aria-hidden="true">
           <span class="mail-text" [class.mail-text--exit-up]="copied()">info@asksi.com</span>
           <span class="mail-text" [class.mail-text--exit-down]="!copied()">copied</span>
-        </div>
-      </div>
+        </span>
+      </button>
+      <p class="sr-only" role="status">
+        {{ copied() ? 'Email address copied to clipboard' : '' }}
+      </p>
     </div>
-  </div>
+  </footer>
 </div>

@@ -8,6 +8,13 @@ import { Item } from '../../app';
   styleUrl: './card-item.css',
 })
 export class CardItem {
+  private static nextId = 0;
+  private readonly uid = CardItem.nextId++;
+
+  /** czytnik ekranu czyta tytul jako nazwe przycisku, a opis jako dodatek */
+  protected readonly labelId = `card-item-label-${this.uid}`;
+  protected readonly textId = `card-item-text-${this.uid}`;
+
   item = input.required<Item>();
   active = input(false);
   cardClicked = output<void>();

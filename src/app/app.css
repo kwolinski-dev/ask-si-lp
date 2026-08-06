@@ -47,7 +47,8 @@
 }
 
 .contact-track:hover .contact-line,
-.contact-track:has(.mail-hit:hover) .contact-line {
+.contact-track:has(.mail-hit:hover) .contact-line,
+.contact-track:has(.mail-hit:focus-visible) .contact-line {
   background: var(--wd-white);
   transform: scaleX(1);
 }
@@ -60,6 +61,17 @@
   margin: -20px;
   cursor: pointer;
   letter-spacing: 0.04em;
+  /* to <button>, wiec zerujemy domyslne style formularza */
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+}
+
+.mail-hit:focus-visible {
+  outline: 2px solid var(--wd-white);
+  outline-offset: -12px;
+  border-radius: 8px;
 }
 
 .mail-icon-wrap {
@@ -70,7 +82,8 @@
   opacity: 0.7;
 }
 
-.mail-hit:hover .mail-icon-wrap {
+.mail-hit:hover .mail-icon-wrap,
+.mail-hit:focus-visible .mail-icon-wrap {
   opacity: 1;
   transition: opacity 0.35s ease-in-out;
 }
@@ -101,7 +114,8 @@
   text-decoration: none;
 }
 
-.mail-hit:hover .mail-link {
+.mail-hit:hover .mail-link,
+.mail-hit:focus-visible .mail-link {
   opacity: 1;
   transition: opacity 0.35s ease-in-out;
 }

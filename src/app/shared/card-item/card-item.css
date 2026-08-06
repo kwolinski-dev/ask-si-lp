@@ -8,7 +8,29 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  /* karta jest <button>, wiec zerujemy domyslne style formularza */
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-align: left;
   transition: border-color 0.5s ease-in-out 0.25s;
+}
+
+/* to samo co hover, ale dla klawiatury — inaczej tekst na odwrocie
+   karty jest nieosiagalny bez myszy */
+.card-item:focus-visible {
+  outline: 2px solid var(--wd-white);
+  outline-offset: 4px;
+  border-color: color-mix(in srgb, var(--wd-white) 50%, transparent);
+}
+
+.card-item:focus-visible .card-item-image,
+.card-item:focus-visible .card-item-label {
+  opacity: 0;
+}
+
+.card-item:focus-visible .card-item-text {
+  opacity: 1;
 }
 
 .card-item-label {
