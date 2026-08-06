@@ -12,9 +12,9 @@ Desktop:
 
 1. ⏸️ Jutro będę pracować nad powiększeniem zdjęcia. Pamiętam, że waga ma być do 1 MB i muszę je upscalować,
 2. ✔️ powyżej widoku 1440 px ma skalować się tylko zdjęcie, a elementy strony zostają w tym samym miejscu,
-3. ⏸️ przyjrzę się skalowaniu pomiędzy breakpointem 1440 px, a 768 px i wrócę do Ciebie jak najszybciej z rozwiązaniem,
+3. ✔️ przyjrzę się skalowaniu pomiędzy breakpointem 1440 px, a 768 px i wrócę do Ciebie jak najszybciej z rozwiązaniem,
 4. ✔️ proszę o zwiększenie o mały % (1–2%) odstępy międzyliterowe,
-5. ⏸️ odległości i wymiary nie muszą być na sztywno. Zależy mi, żeby wizualnie strona wyglądała jak najbardziej podobnie.
+5. ✔️ odległości i wymiary nie muszą być na sztywno. Zależy mi, żeby wizualnie strona wyglądała jak najbardziej podobnie.
 
 Mobile:
 
@@ -24,13 +24,13 @@ Mobile:
 3. ❌ Do zastanowienia się na temat hovera/działania na tapnięciu/przesunięciu. Jutro będę przeszukiwać opcje, proszę też, o pomysł, o którym opowiadałeś, że przy scrollu lekko się zmienia box,
 4. ✔️ copy z mailem ma zostać na opacity jak teraz
 
-❌ na "średnim ekranie" dostosować cards-items i zmienić layout
+✔️ na "średnim ekranie" dostosować cards-items i zmienić layout
 
 
 Pozostałe:
 ✔️ - potrzebuję, żeby wysokość mieściła się na viewporcie telefonu - na razie nie wyświetla się i kontakt jest poniżej paska przeglądarki, a zależy mi, żeby wszystkie informacje były od razu na widoku.
 ✔️ - proszę sprawdź, opcję z  o której pisałeś tj. przerwa pomiędzy tekstem a boxami na mobile mogłaby być bardziej dynamiczna. I dla mniejszych telefonów się zmniejszać.
-❌ - Co pomiędzy 1440 a 768 – imo od razu może spadać na widok gdzie dwa divy sa pod sobą, a nie obok siebie. Musimy uniknąć sytuacji jak ze screena :)
+✔️ - Co pomiędzy 1440 a 768 – imo od razu może spadać na widok gdzie dwa divy sa pod sobą, a nie obok siebie. Musimy uniknąć sytuacji jak ze screena :)
 
 ✔️ - przy okazji, gdybyś mógł w subheadline wyrzucić "for" – "Supercharge your business with Ask SI."
 ✔️ – odstępy międzyliterowe –  dodany 1px w nagłówkach w boxie mnie urządza

@@ -4,17 +4,17 @@
   </div>
 
   <div
-    class="hero-row w-full flex mt-12 flex-col justify-between md:h-[503px] md:min-h-0 md:flex-row md:mt-0 md:items-end"
+    class="hero-row w-full flex mt-12 flex-col justify-between wide:h-[503px] wide:min-h-0 wide:flex-row wide:mt-0 wide:items-end"
   >
     <div>
-      <div class="whitespace-nowrap text-5xl leading-[110%] md:text-[82px] md:leading-[100%]">
+      <div class="hero-headline whitespace-nowrap">
         <p class="font-bold">Let's build</p>
         <p class="font-bold">the future.</p>
         <p class="font-light">Faster.</p>
       </div>
 
       <div
-        class="whitespace-nowrap font-bold text-[#FFFFFF] opacity-70 mt-4 text-lg leading-[120%] md:mt-10 md:text-[28px] md:leading-[125%]"
+        class="hero-subheadline whitespace-nowrap font-bold text-[#FFFFFF] opacity-70"
       >
         <p>Supercharge your</p>
         <p>business with Ask SI.</p>
@@ -22,7 +22,7 @@
     </div>
 
     <div
-      class="card-items-row flex overflow-y-hidden overflow-x-scroll mb-12 md:mb-0"
+      class="card-items-row flex overflow-y-hidden overflow-x-scroll mb-12 wide:mb-0"
       [class.card-items-row--dragging]="isDraggingCards()"
       (mousedown)="onCardsDragStart($event)"
       (mousemove)="onCardsDragMove($event)"
@@ -31,7 +31,7 @@
     >
       @for (item of items(); track $index) {
         <app-card-item
-          [class]="$index === 0 ? 'md:ml-12' : 'ml-12'"
+          [class]="$index === 0 ? 'wide:ml-12' : 'ml-12'"
           [item]="item"
           [active]="activeCardIndices().has($index)"
           (cardClicked)="onCardClicked($index)"
@@ -40,7 +40,7 @@
     </div>
   </div>
 
-  <div class="w-full flex items-center gap-4 md:text-2xl">
+  <div class="w-full flex items-center gap-4">
     <div class="contact-track">
       <div>Got questions?</div>
       <div class="contact-line"></div>

@@ -13,6 +13,18 @@
  justify-content: space-between;
 }
 
+/* Wartosci mobilne; posrednie sa w bloku 768–1440 px, docelowe od 1440 px. */
+.hero-headline {
+  font-size: 3rem;
+  line-height: 110%;
+}
+
+.hero-subheadline {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  line-height: 120%;
+}
+
 .contact-track {
   position: relative;
   display: flex;
@@ -21,6 +33,7 @@
   gap: 1rem;
   flex: 1;
   min-width: 0;
+  font-size: 1rem;
 }
 
 .contact-line {
@@ -155,11 +168,71 @@
   }
 }
 
-@media (width >= 48rem) {
+/* 768–1440px: uklad pod soba jak na mobile, ale w desktopowym paddingu.
+   Jeden ekran do 800 px wysokosci; nadmiar miejsca idzie w odstep
+   tekst <-> karty, karty przewijaja sie od krawedzi do krawedzi. */
+@media (width >= 48rem) and (width < 90rem) {
+  /* rozmiary posrednie miedzy mobile a desktopem */
+  .hero-headline {
+    font-size: 3.75rem;
+  }
+
+  .hero-subheadline {
+    margin-top: 1.5rem;
+    font-size: 1.375rem;
+  }
+
+  .contact-track {
+    font-size: 1.25rem;
+  }
+
+  .wd-container {
+    height: 100%;
+  }
+
+  .hero-row {
+    flex: 1;
+    min-height: 0;
+    margin-top: 2rem;
+    gap: 2rem;
+  }
+
+  .hero-row > div:first-child,
+  .card-items-row {
+    flex: none;
+  }
+
+  .card-items-row {
+    margin-bottom: 2rem;
+    margin-left: -2.5rem;
+    margin-right: -2.5rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (width >= 90rem) {
   /* karty wychodza poza padding body — gdy sie nie mieszcza,
      sciezka scrolla siega prawej krawedzi ekranu */
   .card-items-row {
+    /* margin-left: 20px; */
     margin-right: -2.5rem;
     padding-right: 2.5rem;
+  }
+
+  /* uklad obok siebie — wracaja rozmiary z projektu */
+  .hero-headline {
+    font-size: 5.125rem;
+    line-height: 100%;
+  }
+
+  .hero-subheadline {
+    margin-top: 2.5rem;
+    font-size: 1.75rem;
+    line-height: 125%;
+  }
+
+  .contact-track {
+    font-size: 1.5rem;
   }
 }

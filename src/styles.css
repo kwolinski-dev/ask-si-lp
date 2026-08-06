@@ -2,6 +2,11 @@
 
 @import "tailwindcss";
 
+/* prog, od ktorego tekst i karty stoja obok siebie (1440px) */
+@theme {
+  --breakpoint-wide: 90rem;
+}
+
 :root {
   --wd-white: #fbfbfb;
   --mobile-inset-x: 20px;
@@ -41,13 +46,29 @@ body {
   }
 }
 
-@media (width >= 48rem){
-  body{
-    height: 100vh;
+/* od 768px: zdjecie i padding desktopowe, uklad nadal pod soba */
+@media (width >= 48rem) {
+  body {
     background-image: url("assets/background-photo-desktop.jpg");
     background-position: center top;
     background-size: cover;
     padding: 2.5rem;
+  }
+}
+
+/* 768–1440px: jeden ekran, ponizej 800 px wysokosci wchodzi scroll */
+@media (width >= 48rem) and (width < 90rem) {
+  html,
+  body {
+    height: 100dvh;
+    min-height: 800px;
+  }
+}
+
+/* od 1440px: uklad obok siebie na jednym ekranie */
+@media (width >= 90rem) {
+  body {
+    height: 100vh;
     min-height: 800px;
   }
 }

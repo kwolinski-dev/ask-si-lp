@@ -35,20 +35,25 @@
   transition: opacity 0.5s ease-in-out 0.25s;
 }
 
-.card-item:hover .card-item-image,
-.card-item:hover .card-item-label {
-  opacity: 0;
+/* tylko urzadzenia z mysza — na dotyku :hover potrafi "przykleic sie"
+   po tapnieciu i blokowac przelaczanie klasa .active */
+@media (hover: hover) {
+  .card-item:hover .card-item-image,
+  .card-item:hover .card-item-label {
+    opacity: 0;
+  }
+
+  .card-item:hover .card-item-text {
+    opacity: 1;
+  }
+
+  .card-item:hover {
+    border-color: color-mix(in srgb, var(--wd-white) 50%, transparent);
+  }
 }
 
-.card-item:hover .card-item-text {
-  opacity: 1;
-}
-
-.card-item:hover {
-  border-color: color-mix(in srgb, var(--wd-white) 50%, transparent);
-}
-
-@media (width < 48rem) {
+/* ponizej 1440 px karta reaguje takze na tapniecie/klikniecie */
+@media (width < 90rem) {
   .card-item.active .card-item-image,
   .card-item.active .card-item-label {
     opacity: 0;
