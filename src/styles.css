@@ -17,6 +17,9 @@ body {
   color: var(--wd-white);
   background-blend-mode: multiply, normal;
   font-family: 'neue-haas-grotesk-display';
+  /* +1% odstepu miedzyliterowego na calej stronie; mail i tekst
+     na kartach maja wlasne, wieksze wartosci */
+  letter-spacing: 0.01em;
   padding: 2.5rem var(--mobile-inset-x);
 }
 
@@ -33,8 +36,8 @@ body {
 @media (width < 48rem) {
   html,
   body {
-    height: auto;
-    min-height: 100dvh;
+    height: 100dvh;
+    min-height: 780px;
   }
 }
 

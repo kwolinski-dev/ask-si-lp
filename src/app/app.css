@@ -46,7 +46,7 @@
   padding: 20px;
   margin: -20px;
   cursor: pointer;
-  letter-spacing: 3%;
+  letter-spacing: 0.04em;
 }
 
 .mail-icon-wrap {
@@ -131,8 +131,20 @@
 
 @media (width < 48rem) {
   .wd-container {
-    height: auto;
-    min-height: 100%;
+    height: 100%;
+  }
+
+  /* srodkowa sekcja wypelnia wolna przestrzen — elastyczny jest tylko
+     odstep miedzy tekstem a kartami, reszta wymiarow bez zmian */
+  .hero-row {
+    flex: 1;
+    min-height: 0;
+    gap: 3rem;
+  }
+
+  .hero-row > div:first-child,
+  .card-items-row {
+    flex: none;
   }
 
   .card-items-row {
@@ -140,5 +152,14 @@
     margin-right: calc(-1 * var(--mobile-inset-x));
     padding-left: 20px;
     padding-right: 20px;
+  }
+}
+
+@media (width >= 48rem) {
+  /* karty wychodza poza padding body — gdy sie nie mieszcza,
+     sciezka scrolla siega prawej krawedzi ekranu */
+  .card-items-row {
+    margin-right: -2.5rem;
+    padding-right: 2.5rem;
   }
 }

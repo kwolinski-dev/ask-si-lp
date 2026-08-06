@@ -1,7 +1,7 @@
 .card-item {
   background-color: rgba(29, 29, 27, 0.3);
-  height: 274px;
-  width: 274px;
+  height: 275px;
+  width: 275px;
   border-radius: 12px;
   padding: 24px;
   border: 1px solid var(--wd-white);
@@ -29,8 +29,8 @@
   inset: 24px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  justify-content: flex-start;
+  text-align: left;
   opacity: 0;
   transition: opacity 0.5s ease-in-out 0.25s;
 }
