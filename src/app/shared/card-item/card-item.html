@@ -2,7 +2,6 @@
   type="button"
   class="card-item flex flex-col justify-between"
   [class.active]="active()"
-  [class.card-item--pulse]="hint() === 'pulse' && !wasClicked()"
   [attr.aria-labelledby]="labelId"
   [attr.aria-describedby]="textId"
   (click)="onCardClick()"

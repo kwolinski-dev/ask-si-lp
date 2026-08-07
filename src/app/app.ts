@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { CardItem } from './shared/card-item/card-item';
 
 /** podpowiedzi "to jest klikalne", pokazywane wylacznie na mobile */
-export type CardHint = 'auto-demo' | 'peek' | 'pulse';
+export type CardHint = 'auto-demo' | 'peek';
 
 export interface Item {
   title: string;
@@ -61,7 +61,6 @@ export class App {
       maturity.`,
     },
     {
-      mobileHint: 'pulse',
       title: 'Build global partnership',
       photoUrl: 'icon1.svg',
       text: `The platform integrates advanced

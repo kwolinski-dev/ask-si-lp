@@ -4,6 +4,7 @@
   width: 275px;
   border-radius: 12px;
   padding: 24px;
+  /* ramka jest stala — nie zmienia sie w zadnym stanie */
   border: 1px solid var(--wd-white);
   cursor: pointer;
   position: relative;
@@ -13,7 +14,6 @@
   color: inherit;
   letter-spacing: inherit;
   text-align: left;
-  transition: border-color 0.5s ease-in-out 0.25s;
 }
 
 /* to samo co hover, ale dla klawiatury — inaczej tekst na odwrocie
@@ -21,7 +21,6 @@
 .card-item:focus-visible {
   outline: 2px solid var(--wd-white);
   outline-offset: 4px;
-  border-color: color-mix(in srgb, var(--wd-white) 50%, transparent);
 }
 
 .card-item:focus-visible .card-item-image,
@@ -68,10 +67,6 @@
   .card-item:hover .card-item-text {
     opacity: 1;
   }
-
-  .card-item:hover {
-    border-color: color-mix(in srgb, var(--wd-white) 50%, transparent);
-  }
 }
 
 /* podpowiedz "jest tu wiecej tresci" — tylko mobile, wlaczana per karta */
@@ -90,10 +85,6 @@
   .card-item.active .card-item-text {
     opacity: 1;
     transition: opacity 0.5s ease-in-out 0.25s;
-  }
-
-  .card-item.active {
-    border-color: color-mix(in srgb, var(--wd-white) 50%, transparent);
   }
 }
 
@@ -123,21 +114,5 @@
 
   .card-item.active .card-item-peek {
     opacity: 0;
-  }
-
-  /* cykliczne pulsowanie ramki, dopoki karta nie zostanie dotknieta */
-  .card-item--pulse {
-    animation: card-item-pulse 2.5s ease-in-out infinite;
-  }
-
-  @keyframes card-item-pulse {
-    0%,
-    100% {
-      border-color: var(--wd-white);
-    }
-
-    50% {
-      border-color: color-mix(in srgb, var(--wd-white) 50%, transparent);
-    }
   }
 }
