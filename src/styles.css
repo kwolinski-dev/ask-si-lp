@@ -14,7 +14,7 @@
 
 body {
   margin: 0;
-  background-image: url("assets/background-photo-mobile.jpg");
+  background-image: url("assets/background-photo-mobile.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -66,6 +66,13 @@ body {
     background-position: center top;
     background-size: cover;
     padding: 2.5rem;
+  }
+}
+
+/* 768–1200px: posrednie zdjecie, wezsze niz desktopowe */
+@media (width >= 48rem) and (width < 75rem) {
+  body {
+    background-image: url("assets/background-photo-desktop-small.png");
   }
 }
 

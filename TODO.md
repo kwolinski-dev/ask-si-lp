@@ -10,7 +10,7 @@ Ogólne:
 
 Desktop:
 
-1. ⏸️ Jutro będę pracować nad powiększeniem zdjęcia. Pamiętam, że waga ma być do 1 MB i muszę je upscalować,
+1. ✔️ Jutro będę pracować nad powiększeniem zdjęcia. Pamiętam, że waga ma być do 1 MB i muszę je upscalować,
 2. ✔️ powyżej widoku 1440 px ma skalować się tylko zdjęcie, a elementy strony zostają w tym samym miejscu,
 3. ✔️ przyjrzę się skalowaniu pomiędzy breakpointem 1440 px, a 768 px i wrócę do Ciebie jak najszybciej z rozwiązaniem,
 4. ✔️ proszę o zwiększenie o mały % (1–2%) odstępy międzyliterowe,
@@ -21,7 +21,7 @@ Mobile:
 1. ✔️ Póki co – sugestia, żeby zwrócić uwagę na margines z lewej strony:
 
 2. ✔️ Zwiększenie rozmiaru subheadline (tylko na mobile),
-3. ❌ Do zastanowienia się na temat hovera/działania na tapnięciu/przesunięciu. Jutro będę przeszukiwać opcje, proszę też, o pomysł, o którym opowiadałeś, że przy scrollu lekko się zmienia box,
+3. ✔️ Do zastanowienia się na temat hovera/działania na tapnięciu/przesunięciu. Jutro będę przeszukiwać opcje, proszę też, o pomysł, o którym opowiadałeś, że przy scrollu lekko się zmienia box,
 4. ✔️ copy z mailem ma zostać na opacity jak teraz
 
 ✔️ na "średnim ekranie" dostosować cards-items i zmienić layout
@@ -39,6 +39,6 @@ Pozostałe:
 ⛔ - po hoverze proszę o obramowanie 2px. Czyli na normalnym state ma stroke 1px 100% biały, po najechaniu stroke 2px, 50% bieli 
 
 
-❌ - efekt sugerujący treść na mobile – w tym przypadku wydaje mi się, że najlepszą opcją byłoby 3. Auto demo lub lub 4. peek. Chcę uniknąć dodatkowych elementów na boxach, a 1. chociaż atrakcyjna – może nie być wystarczająco sugestywna
-❌ – czy jest możliwość zobaczeniu po jednym boxie z wybranym efektem 3 i 4? :) poprosiłam claude o te efekty ale coś nie śmiga.
-❌ - bardzo ważne – musimy zachować spójność i sprawić, że użytkownik zrozumie szablon działania – mam na myśli to, że po tym samym czasie muszą wygaszać się informacje na boxie. W teście korytarzowym jedna osoba nie rozumiała, czemu pierwszy box nie gaśnie, a drugi po tapnięciu gaśnie (wiem, że to wersja robocza, zwracam uwagę na ten aspekt)
+⏸️ - efekt sugerujący treść na mobile – w tym przypadku wydaje mi się, że najlepszą opcją byłoby 3. Auto demo lub lub 4. peek. Chcę uniknąć dodatkowych elementów na boxach, a 1. chociaż atrakcyjna – może nie być wystarczająco sugestywna
+✔️ – czy jest możliwość zobaczeniu po jednym boxie z wybranym efektem 3 i 4? :) poprosiłam claude o te efekty ale coś nie śmiga.
+⏸️ - bardzo ważne – musimy zachować spójność i sprawić, że użytkownik zrozumie szablon działania – mam na myśli to, że po tym samym czasie muszą wygaszać się informacje na boxie. W teście korytarzowym jedna osoba nie rozumiała, czemu pierwszy box nie gaśnie, a drugi po tapnięciu gaśnie (wiem, że to wersja robocza, zwracam uwagę na ten aspekt)
