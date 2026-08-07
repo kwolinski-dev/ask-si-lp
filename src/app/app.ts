@@ -2,16 +2,10 @@ import { afterNextRender, Component, inject, PLATFORM_ID, signal } from '@angula
 import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { CardItem } from './shared/card-item/card-item';
+// typy siedza w osobnym pliku, zeby app.ts i card-item.ts nie importowaly sie wzajemnie
+import { Item } from './shared/card-item/card-item.model';
 
-/** podpowiedzi "to jest klikalne", pokazywane wylacznie na mobile */
-export type CardHint = 'auto-demo' | 'peek';
-
-export interface Item {
-  title: string;
-  photoUrl: string;
-  text: string;
-  mobileHint?: CardHint;
-}
+export type { CardHint, Item } from './shared/card-item/card-item.model';
 
 @Component({
   selector: 'app-root',
@@ -61,6 +55,7 @@ export class App {
       maturity.`,
     },
     {
+      mobileHint: 'pulse',
       title: 'Build global partnership',
       photoUrl: 'icon1.svg',
       text: `The platform integrates advanced

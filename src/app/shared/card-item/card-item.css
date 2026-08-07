@@ -115,4 +115,21 @@
   .card-item.active .card-item-peek {
     opacity: 0;
   }
+
+  /* jedyny wyjatek od stalej ramki: cykliczne pulsowanie jako podpowiedz,
+     gasnie na dobre, gdy uzytkownik raz dotknie karty */
+  .card-item--pulse {
+    animation: card-item-pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes card-item-pulse {
+    0%,
+    100% {
+      border-color: var(--wd-white);
+    }
+
+    50% {
+      border-color: color-mix(in srgb, var(--wd-white) 50%, transparent);
+    }
+  }
 }
