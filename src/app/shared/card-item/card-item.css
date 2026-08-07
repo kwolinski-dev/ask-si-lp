@@ -74,6 +74,11 @@
   }
 }
 
+/* podpowiedz "jest tu wiecej tresci" — tylko mobile, wlaczana per karta */
+.card-item-peek {
+  display: none;
+}
+
 /* ponizej 1440 px karta reaguje takze na tapniecie/klikniecie */
 @media (width < 90rem) {
   .card-item.active .card-item-image,
@@ -98,4 +103,41 @@
         height: 64px;
         transition: opacity 0.5s ease-in-out 0.25s;
     }
+}
+
+@media (width < 48rem) {
+  /* fragment opisu przyciety i wygaszony gradientem — sygnal "jest wiecej" */
+  .card-item-peek {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 16px;
+    line-height: 130%;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    opacity: 0.7;
+    mask-image: linear-gradient(to right, #000 55%, transparent);
+    -webkit-mask-image: linear-gradient(to right, #000 55%, transparent);
+    transition: opacity 0.5s ease-in-out 0.25s;
+  }
+
+  .card-item.active .card-item-peek {
+    opacity: 0;
+  }
+
+  /* cykliczne pulsowanie ramki, dopoki karta nie zostanie dotknieta */
+  .card-item--pulse {
+    animation: card-item-pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes card-item-pulse {
+    0%,
+    100% {
+      border-color: var(--wd-white);
+    }
+
+    50% {
+      border-color: color-mix(in srgb, var(--wd-white) 50%, transparent);
+    }
+  }
 }

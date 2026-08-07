@@ -1,5 +1,5 @@
-import { Component, input, output } from '@angular/core';
-import { Item } from '../../app';
+import { Component, input, output, signal } from '@angular/core';
+import { CardHint, Item } from '../../app';
 
 @Component({
   selector: 'app-card-item',
@@ -16,10 +16,15 @@ export class CardItem {
   protected readonly textId = `card-item-text-${this.uid}`;
 
   item = input.required<Item>();
+  hint = input<CardHint | undefined>(undefined);
   active = input(false);
   cardClicked = output<void>();
 
+  /** pulsowanie ramki gasnie, gdy uzytkownik raz dotknie karty */
+  protected readonly wasClicked = signal(false);
+
   onCardClick(): void {
+    this.wasClicked.set(true);
     this.cardClicked.emit();
   }
 }

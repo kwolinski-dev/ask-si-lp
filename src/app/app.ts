@@ -1,12 +1,16 @@
-import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
+import { afterNextRender, Component, inject, PLATFORM_ID, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { CardItem } from './shared/card-item/card-item';
+
+/** podpowiedzi "to jest klikalne", pokazywane wylacznie na mobile */
+export type CardHint = 'auto-demo' | 'peek' | 'pulse';
 
 export interface Item {
   title: string;
   photoUrl: string;
   text: string;
+  mobileHint?: CardHint;
 }
 
 @Component({
@@ -20,6 +24,8 @@ export class App {
   private copiedTimeoutId?: ReturnType<typeof setTimeout>;
   private readonly cardTimeouts = new Map<number, ReturnType<typeof setTimeout>>();
   private static readonly CARD_ACTIVE_DURATION = 8000;
+  private static readonly AUTO_DEMO_DELAY = 600;
+  private static readonly AUTO_DEMO_DURATION = 2000;
 
   activeCardIndices = signal<ReadonlySet<number>>(new Set());
   copied = signal(false);
@@ -31,6 +37,7 @@ export class App {
 
   items = signal<Item[]>([
     {
+      mobileHint: 'auto-demo',
       title: 'Automate and\noptimize operation\neffortlessly',
       photoUrl: 'icon2.svg',
       text: `The platform integrates advanced
@@ -42,6 +49,7 @@ export class App {
       maturity.`,
     },
     {
+      mobileHint: 'peek',
       title: 'Acces and\ndevelop AI-driven\nsolutions',
       photoUrl: 'icon3.svg',
       text: `The platform integrates advanced
@@ -53,6 +61,7 @@ export class App {
       maturity.`,
     },
     {
+      mobileHint: 'pulse',
       title: 'Build global partnership',
       photoUrl: 'icon1.svg',
       text: `The platform integrates advanced
@@ -64,6 +73,31 @@ export class App {
       maturity.`,
     },
   ]);
+
+  constructor() {
+    // tylko przegladarka; na serwerze afterNextRender sie nie uruchamia
+    afterNextRender(() => this.runMobileAutoDemo());
+  }
+
+  /** na mobile pierwsza karta sama odslania sie na chwile po wejsciu na strone */
+  private runMobileAutoDemo(): void {
+    if (!window.matchMedia('(width < 48rem)').matches) {
+      return;
+    }
+
+    const index = this.items().findIndex((item) => item.mobileHint === 'auto-demo');
+    if (index < 0) {
+      return;
+    }
+
+    setTimeout(() => {
+      this.activeCardIndices.update((current) => new Set(current).add(index));
+      this.cardTimeouts.set(
+        index,
+        setTimeout(() => this.deactivateCard(index), App.AUTO_DEMO_DURATION),
+      );
+    }, App.AUTO_DEMO_DELAY);
+  }
 
   onCardClicked(index: number): void {
     if (this.dragMoved) {
