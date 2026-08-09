@@ -2,16 +2,13 @@
   type="button"
   class="card-item flex flex-col justify-between"
   [class.active]="active()"
-  [class.card-item--pulse]="hint() === 'pulse' && !wasClicked()"
+  [class.card-item--glow]="showGlow()"
+  [class.card-item--pulse]="showPulse()"
   [attr.aria-labelledby]="labelId"
   [attr.aria-describedby]="textId"
   (click)="onCardClick()"
 >
   <img class="card-item-image" [src]="item().photoUrl" alt="" />
-
-  @if (hint() === 'peek') {
-    <span class="card-item-peek" aria-hidden="true">{{ item().text }}</span>
-  }
 
   <span [id]="labelId" class="card-item-label text-[28px] leading-[110%] font-light">
     {{ item().title }}

@@ -69,9 +69,13 @@
   }
 }
 
-/* podpowiedz "jest tu wiecej tresci" — tylko mobile, wlaczana per karta */
-.card-item-peek {
-  display: none;
+/* Kat obrotu luku swiatla. Musi byc zarejestrowany przez @property, bo bez
+   typu <angle> przegladarka nie potrafi animowac zmiennej w gradiencie —
+   przeskakiwalaby skokowo zamiast plynnie obracac. */
+@property --card-glow-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 
 /* ponizej 1440 px karta reaguje takze na tapniecie/klikniecie */
@@ -103,39 +107,69 @@
     width: 250px;
   }
 
-  /* fragment opisu przyciety i wygaszony gradientem — sygnal "jest wiecej" */
-  .card-item-peek {
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    font-size: 16px;
-    line-height: 130%;
-    font-weight: 300;
-    letter-spacing: 0.06em;
-    opacity: 0.7;
-    mask-image: linear-gradient(to right, #000 55%, transparent);
-    -webkit-mask-image: linear-gradient(to right, #000 55%, transparent);
-    transition: opacity 0.5s ease-in-out 0.25s;
+  /* Podpowiedz "to jest klikalne" — tylko pierwsza karta. Swiecacy luk obiega
+     ramke, a cala karta ledwo zauwazalnie oddycha. Jedno i drugie gasnie na
+     dobre, gdy uzytkownik raz dotknie karty (klasa znika z szablonu). */
+  .card-item--glow {
+    /* statyczna ramka przygaszona, zeby to luk byl najjasniejszym elementem —
+       inaczej pelne biale obramowanie zupelnie go przykrywa */
+    border-color: color-mix(in srgb, var(--wd-white) 40%, transparent);
   }
 
-  .card-item.active .card-item-peek {
-    opacity: 0;
-  }
-
-  /* jedyny wyjatek od stalej ramki: cykliczne pulsowanie jako podpowiedz,
-     gasnie na dobre, gdy uzytkownik raz dotknie karty */
+  /* oddychanie jest osobna klasa, bo dostaje je tylko pierwsza karta —
+     pozostale maja sam luk */
   .card-item--pulse {
-    animation: card-item-pulse 2.5s ease-in-out infinite;
+    animation: card-item-breathe 3.2s ease-in-out infinite;
   }
 
-  @keyframes card-item-pulse {
+  .card-item--glow::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    /* padding = grubosc swiecacej ramki; maska ponizej wycina srodek,
+       zostaje sam obwod */
+    padding: 2px;
+    background: conic-gradient(
+      from var(--card-glow-angle),
+      transparent 0deg,
+      var(--wd-glow) 30deg,
+      transparent 100deg,
+      transparent 360deg
+    );
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    /* poswiata; na zewnatrz karty przycina ja overflow:hidden, wiec swieci
+       do srodka — to celowe, bo .card-items-row i tak tnie w pionie */
+    filter: drop-shadow(0 0 10px var(--wd-glow));
+    pointer-events: none;
+    animation: card-item-glow-spin 4.5s linear infinite;
+  }
+
+  @keyframes card-item-glow-spin {
+    to {
+      --card-glow-angle: 360deg;
+    }
+  }
+
+  /* Karta oddycha W DOL od swojego rozmiaru, nigdy ponad. Powiekszanie ponad
+     100% wychodzilo poza .card-items-row, ktora ma overflow-y:hidden
+     (wymuszone przez poziomy scroll) i przycinala wystajacy fragment. */
+  @keyframes card-item-breathe {
     0%,
     100% {
-      border-color: var(--wd-white);
+      transform: scale(0.985);
     }
 
     50% {
-      border-color: color-mix(in srgb, var(--wd-white) 50%, transparent);
+      transform: scale(1);
     }
   }
+
 }

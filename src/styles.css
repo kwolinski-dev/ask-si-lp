@@ -9,6 +9,8 @@
 
 :root {
   --wd-white: #fbfbfb;
+  /* kolor podpowiedzi glow na pierwszej karcie */
+  --wd-glow: #edae84;
   --mobile-inset-x: 20px;
 }
 

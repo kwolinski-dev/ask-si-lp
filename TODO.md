@@ -41,6 +41,6 @@ Pozostałe:
 ✔️ – czy jest możliwość zobaczeniu po jednym boxie z wybranym efektem 3 i 4? :) poprosiłam claude o te efekty ale coś nie śmiga.
 ⏸️ - bardzo ważne – musimy zachować spójność i sprawić, że użytkownik zrozumie szablon działania – mam na myśli to, że po tym samym czasie muszą wygaszać się informacje na boxie. W teście korytarzowym jedna osoba nie rozumiała, czemu pierwszy box nie gaśnie, a drugi po tapnięciu gaśnie (wiem, że to wersja robocza, zwracam uwagę na ten aspekt)
 
-❌ poprawki mobile
-❌ efekt glow
-❌ optymalizacja zdjęć
+✔️ poprawki mobile
+✔️ efekt glow
+✔️ optymalizacja zdjęć
