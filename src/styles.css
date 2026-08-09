@@ -80,6 +80,26 @@ body {
     height: auto;
     min-height: 100svh;
   }
+
+  /* Layout ma wysokosc svh, ale ekran jest wyzszy (lvh) — gdy pasek Safari sie
+     zwinie albo przy bounce odslania sie roznica, na ktorej widac bylo plaski
+     background-color zamiast zdjecia. Element fixed jest pozycjonowany
+     wzgledem viewportu, wiec kryje ekran w kazdym stanie paska i nie wplywa
+     na wysokosc dokumentu (czyli nie psuje onepagera). */
+  body {
+    background-image: none;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url("assets/background-photo-mobile.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
 }
 
 /* od 768px: zdjecie i padding desktopowe, uklad nadal pod soba */
