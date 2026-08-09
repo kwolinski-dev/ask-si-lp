@@ -12,31 +12,32 @@
   --mobile-inset-x: 20px;
 }
 
-/* to samo tlo na html co na body — na iOS przy rubber-band scrollu
-   (bounce) i chowaniu paska adresu widac html "pod" bodym; bez tego
-   przez ulamek sekundy wyskakuje czarny pasek zamiast zdjecia */
-html,
 body {
+  margin: 0;
   background-image: url("assets/background-photo-mobile.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  background-blend-mode: multiply, normal;
-}
-
-body {
-  margin: 0;
   background-attachment: scroll;
   color: var(--wd-white);
+  background-blend-mode: multiply, normal;
   font-family: 'neue-haas-grotesk-display';
   /* +1% odstepu miedzyliterowego na calej stronie; mail i tekst
      na kartach maja wlasne, wieksze wartosci */
   letter-spacing: 0.01em;
-  padding: 2.5rem var(--mobile-inset-x);
+  padding: calc(2.5rem + env(safe-area-inset-top)) var(--mobile-inset-x)
+    calc(2.5rem + env(safe-area-inset-bottom));
 }
 
+/* Zdjecie siedzi na <body>. <html> maluje canvas, czyli wszystko czego
+   zdjecie nie zakrywa: obszar pod paskiem statusu na iOS i miejsce, ktore
+   odslania bounce przy przewijaniu. Kolory to srednia z gornej i dolnej
+   krawedzi zdjecia, wiec zamiast czarnego paska widac przedluzenie kadru.
+   Gradient rysuje sie w obrebie <html>; poza nim (overscroll) zostaje
+   background-color, dlatego rowna sie kolorowi gory. */
 html {
-  background-color: #000;
+  background-color: #2b120c;
+  background-image: linear-gradient(180deg, #2b120c 0%, #180505 100%);
 }
 
 /* osoby wrazliwe na ruch dostaja te same stany, tylko bez animacji */
@@ -68,23 +69,30 @@ body {
 
 /* od 768px: zdjecie i padding desktopowe, uklad nadal pod soba */
 @media (width >= 48rem) {
-  html,
   body {
     background-image: url("assets/background-photo-desktop.jpg");
     background-position: center top;
     background-size: cover;
+    padding: calc(2.5rem + env(safe-area-inset-top)) 2.5rem
+      calc(2.5rem + env(safe-area-inset-bottom));
   }
 
-  body {
-    padding: 2.5rem;
+  /* zdjecie desktopowe ma jasniejsza, pomaranczowa gore niz mobilne */
+  html {
+    background-color: #632409;
+    background-image: linear-gradient(180deg, #632409 0%, #2b0707 100%);
   }
 }
 
 /* 768–1200px: posrednie zdjecie, wezsze niz desktopowe */
 @media (width >= 48rem) and (width < 75rem) {
-  html,
   body {
     background-image: url("assets/background-photo-desktop-small.jpg");
+  }
+
+  html {
+    background-color: #5b2109;
+    background-image: linear-gradient(180deg, #5b2109 0%, #1f0506 100%);
   }
 }
 
