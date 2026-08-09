@@ -97,6 +97,12 @@
 }
 
 @media (width < 48rem) {
+  /* mniejsza karta, zeby onepager zmiescil sie na typowym iPhonie */
+  .card-item {
+    height: 250px;
+    width: 250px;
+  }
+
   /* fragment opisu przyciety i wygaszony gradientem — sygnal "jest wiecej" */
   .card-item-peek {
     display: block;

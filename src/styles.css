@@ -25,8 +25,13 @@ body {
   /* +1% odstepu miedzyliterowego na calej stronie; mail i tekst
      na kartach maja wlasne, wieksze wartosci */
   letter-spacing: 0.01em;
-  padding: calc(2.5rem + env(safe-area-inset-top)) var(--mobile-inset-x)
-    calc(2.5rem + env(safe-area-inset-bottom));
+  /* Mobile ma ciasny budzet wysokosci, wiec pionowy padding jest mniejszy niz
+     desktopowy (desktop wraca do 2.5rem nizej). Dolne 1.5rem to jednoczesnie
+     odstep nad paskiem Safari: przy rozwinietym pasku inset wynosi 0, bo pasek
+     jest poza viewportem, wiec te 24px sa jedynym oddechem miedzy mailem
+     a paskiem. Gorne doklada sie do wysokosci paska statusu. */
+  padding: calc(1.5rem + env(safe-area-inset-top)) var(--mobile-inset-x)
+    calc(1.5rem + env(safe-area-inset-bottom));
 }
 
 /* Zdjecie siedzi na <body>. <html> maluje canvas, czyli wszystko czego
@@ -59,11 +64,21 @@ body {
   height: 100%;
 }
 
+/* Onepager na mobile. svh to viewport przy ROZWINIETYM pasku Safari, czyli
+   najmniejszy, jaki strona dostaje — layout liczony do niego nie chowa stopki
+   pod paskiem i nie skacze w trakcie scrolla (co robi dvh).
+
+   min-height zamiast height: gdy tresc jest wyzsza niz ekran (SE, mini),
+   strona rosnie i scroll wraca sam, bez progu w pikselach.
+
+   body zostaje blokiem — NIE robic z niego flexa: .wd-container ma
+   margin:0 auto, a automatyczny margines w osi poprzecznej flexa wylacza
+   stretch i kontener przestaje wypelniac szerokosc. */
 @media (width < 48rem) {
   html,
   body {
-    height: 100dvh;
-    min-height: 780px;
+    height: auto;
+    min-height: 100svh;
   }
 }
 

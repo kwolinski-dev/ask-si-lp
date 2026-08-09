@@ -157,8 +157,25 @@
 }
 
 @media (width < 48rem) {
+  :host {
+    height: auto;
+  }
+
+  /* linia rozwija sie dopiero na hover, ktorego na dotyku nie ma — niech wiec
+     nie rezerwuje 3rem szerokosci, bo to przez nia mail wypada poza ekran */
+  .contact-line {
+    min-width: 0;
+  }
+
+  /* Wysokosc onepagera liczona wprost z svh, a nie przez lancuch height:100%
+     po przodkach — dzieki temu body i :host moga zostac zwyklymi blokami.
+     Odejmujemy pionowy padding body (2 x 1.5rem) razem z safe-area, bo
+     kontener siedzi w jego content-boxie. */
   .wd-container {
-    height: 100%;
+    height: auto;
+    min-height: calc(
+      100svh - 3rem - env(safe-area-inset-top) - env(safe-area-inset-bottom)
+    );
   }
 
   /* srodkowa sekcja wypelnia wolna przestrzen — elastyczny jest tylko
@@ -166,7 +183,8 @@
   .hero-row {
     flex: 1;
     min-height: 0;
-    gap: 3rem;
+    margin-top: 1.5rem;
+    gap: 2rem;
   }
 
   .hero-row > div:first-child,
@@ -175,6 +193,10 @@
   }
 
   .card-items-row {
+    /* przy ciasnym ekranie justify-content nie ma juz wolnej przestrzeni do
+       rozdania, wiec bez tego karty dotykaja stopki. Odstep idzie z zapasu
+       miedzy tekstem a kartami, ktory i tak jest duzy. */
+    margin-bottom: 2rem;
     margin-left: calc(-1 * var(--mobile-inset-x));
     margin-right: calc(-1 * var(--mobile-inset-x));
     padding-left: 20px;
