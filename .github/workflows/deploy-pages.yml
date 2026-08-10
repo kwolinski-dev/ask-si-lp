@@ -9,6 +9,12 @@ permissions:
   pages: write
   id-token: write
 
+# jeden deploy Pages naraz — bez tego dwa rownolegle biegi moga sie sciagac
+# o ten sam environment i na produkcji ladowal ten, ktory skonczyl pozniej
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
