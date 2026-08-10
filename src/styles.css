@@ -12,6 +12,11 @@
   /* kolor podpowiedzi glow na pierwszej karcie */
   --wd-glow: #edae84;
   --mobile-inset-x: 20px;
+  /* Wysokosc plywajacego paska Safari na iOS. Nie ma na nia zadnego env()
+     ani jednostki CSS, wiec jest stala — do dostrojenia na urzadzeniu, jesli
+     mail bedzie za blisko paska albo za wysoko. Liczy sie PONAD
+     env(safe-area-inset-bottom), ktore pokrywa sam home indicator. */
+  --safari-bar: 3.5rem;
 }
 
 body {
@@ -101,6 +106,43 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+  }
+}
+
+/* Safari na iOS. Pasek nawigacji plywa NAD strona, wiec zamiast walczyc
+   o warstwe fixed (probowalismy — Safari ja przycina na krawedzi paska,
+   patrz revert 1808393) pozwalamy calej stronie urosnac do 100lvh, czyli do
+   fizycznego dolu ekranu. Zwykla tresc, w odroznieniu od fixed, renderuje sie
+   pod paskiem bez przycinania — zdjecie wraca wiec na <body> i samo siega
+   pod pasek.
+
+   Cena: stopka tez wjechalaby pod pasek, dlatego dolny padding rosnie
+   o --safari-bar. Kontener liczy z tego swoja wysokosc (app.css), wiec mail
+   siada tuz nad paskiem zamiast pod nim.
+
+   @supports celuje w sam WebKit: -webkit-named-image nie istnieje ani w
+   Blink, ani w Gecko. Na Androidzie pasek zabiera wysokosc normalnie
+   i ten padding bylby tam tylko pusta dziura. */
+@supports (background: -webkit-named-image(i)) {
+  @media (width < 48rem) {
+    html,
+    body {
+      min-height: 100lvh;
+    }
+
+    body {
+      /* pozostale wlasciwosci tla (no-repeat / center / cover) sa juz
+         w bazowej regule body i nie byly nadpisywane */
+      background-image: url("assets/background-photo-mobile.png");
+      padding-bottom: calc(
+        1.5rem + env(safe-area-inset-bottom) + var(--safari-bar)
+      );
+    }
+
+    /* warstwa fixed nie jest juz potrzebna — i to wlasnie ona byla przycinana */
+    body::before {
+      content: none;
+    }
   }
 }
 

@@ -3,7 +3,7 @@
   height: 275px;
   width: 275px;
   border-radius: 12px;
-  padding: 24px;
+  padding: 23px;
   /* ramka jest stala — nie zmienia sie w zadnym stanie */
   border: 1px solid var(--wd-white);
   cursor: pointer;
