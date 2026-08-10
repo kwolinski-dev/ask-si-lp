@@ -125,7 +125,9 @@ body {
    i ten padding bylby tam tylko pusta dziura. */
 @supports (background: -webkit-named-image(i)) {
   @media (width < 48rem) {
-    html,
+    /* Tylko body rosnie do lvh. <html> zostaje na svh z reguly wyzej — to ono
+       jest kontenerem przewijania, wiec gdyby tez dostalo lvh, trzymaloby
+       scroll niezaleznie od ujemnego marginesu ponizej. */
     body {
       min-height: 100lvh;
     }
@@ -137,6 +139,12 @@ body {
       padding-bottom: calc(
         1.5rem + env(safe-area-inset-bottom) + var(--safari-bar)
       );
+      /* Samo 100lvh robilo scroll: dokument byl wyzszy od widocznego obszaru
+         dokladnie o wysokosc paska. Ujemny dolny margines odejmuje ta roznice
+         od wysokosci PRZEWIJANIA, nie ruszajac pudelka body — tlo dalej maluje
+         sie na pelne 100lvh i wchodzi pod pasek, a scroll znika.
+         Wartosc jest ujemna, bo lvh > svh. */
+      margin-bottom: calc(100svh - 100lvh);
     }
 
     /* warstwa fixed nie jest juz potrzebna — i to wlasnie ona byla przycinana */
