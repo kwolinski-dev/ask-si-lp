@@ -95,25 +95,12 @@ body {
   body::before {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    /* lvh, a nie bottom:0 — warstwa ma siegac ekranu przy ZWINIETYM pasku.
-       Jest fixed, wiec jej wysokosc nie wchodzi do wysokosci dokumentu
-       i nie robi scrolla. */
-
-       
-    height: 100lvh;
+    inset: 0;
     z-index: -1;
     background-image: url("assets/background-photo-mobile.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    /* Safari 26 (iOS 26) przycina NIEPRZEZROCZYSTE warstwy fixed na gornej
-       krawedzi plywajacego paska — zamiast zdjecia zostawal tam plaski
-       background-color z <html>. Opacity ponizej 1 przenosi warstwe na
-       kompozytor i przycinanie znika. Roznicy w kolorze nie widac. */
-    opacity: 0.999;
   }
 }
 
