@@ -124,6 +124,17 @@
     animation: card-item-breathe 3.2s ease-in-out infinite;
   }
 
+  /* Firefox nie potrafi animowac kata w conic-gradient na kompozytorze, wiec
+     luk przemalowuje sie w kazdej klatce na watku glownym — skala karty dzieli
+     z nim budzet klatki i widocznie szarpie. Zamiast psuc wrazenie zostawiamy
+     tam sam luk, bez oddychania.
+     Detekcja: -moz-appearance zna tylko Firefox. */
+  @supports (-moz-appearance: none) {
+    .card-item--pulse {
+      animation: none;
+    }
+  }
+
   .card-item--glow::after {
     content: "";
     position: absolute;
@@ -139,14 +150,19 @@
       transparent 100deg,
       transparent 360deg
     );
-    mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    mask-composite: exclude;
+    /* Kolejnosc ma znaczenie: Firefox (121+) traktuje -webkit-mask jako alias
+       mask, wiec skrot resetuje mask-composite z powrotem na 'add', a
+       -webkit-mask-composite: xor juz ignoruje. Gdy prefiks stoi na koncu,
+       maska przestaje wycinac srodek i gradient zalewa cala karte. Dlatego
+       najpierw wariant webkitowy (dla starszego Safari), potem standardowy. */
     -webkit-mask:
       linear-gradient(#000 0 0) content-box,
       linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
     /* poswiata; na zewnatrz karty przycina ja overflow:hidden, wiec swieci
        do srodka — to celowe, bo .card-items-row i tak tnie w pionie */
     filter: drop-shadow(0 0 10px var(--wd-glow));
