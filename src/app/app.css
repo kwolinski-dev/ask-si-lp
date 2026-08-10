@@ -202,6 +202,16 @@
     padding-left: 20px;
     padding-right: 20px;
   }
+
+  /* Bardzo niski ekran (iPhone SE i podobne). Odstep tekst <-> karty bierze sie
+     z justify-between .hero-row, wiec dopoki jest zapas wysokosci, jest duzy.
+     Przy takiej wysokosci zapasu nie ma i zostaje samo gap: 2rem — podtytul
+     siada wtedy tuz nad kartami. Dokladamy 20 px, zeby mial czym oddychac. */
+  @media (height < 43rem) {
+    .hero-row > div:first-child {
+      margin-bottom: 20px;
+    }
+  }
 }
 
 /* 768–1440px: uklad pod soba jak na mobile, ale w desktopowym paddingu.
