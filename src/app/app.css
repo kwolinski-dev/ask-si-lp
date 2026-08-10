@@ -204,23 +204,6 @@
   }
 }
 
-/* Safari na iOS: strona siega 100lvh i wchodzi pod plywajacy pasek (styles.css),
-   wiec kontener liczy wysokosc z lvh zamiast svh. Odejmujemy pionowy padding
-   body razem z --safari-bar, ktory body doklada na dole — dzieki temu stopka
-   konczy sie tuz NAD paskiem, a pod pasek wchodzi samo zdjecie.
-   Musi stac po regule wyzej, bo ma ta sama specyficznosc (@supports jej nie
-   podbija) i wygrywa kolejnoscia. */
-@supports (background: -webkit-named-image(i)) {
-  @media (width < 48rem) {
-    .wd-container {
-      min-height: calc(
-        100lvh - 3rem - var(--safari-bar) - env(safe-area-inset-top) -
-          env(safe-area-inset-bottom)
-      );
-    }
-  }
-}
-
 /* 768–1440px: uklad pod soba jak na mobile, ale w desktopowym paddingu.
    Jeden ekran do 800 px wysokosci; nadmiar miejsca idzie w odstep
    tekst <-> karty, karty przewijaja sie od krawedzi do krawedzi. */
