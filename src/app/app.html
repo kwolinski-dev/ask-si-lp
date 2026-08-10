@@ -31,7 +31,7 @@
         <app-card-item
           [class]="$index === 0 ? 'wide:ml-12' : 'ml-6 md:ml-12'"
           [item]="item"
-          [hint]="item.mobileHint"
+          [hint]="hintsDismissed() ? undefined : item.mobileHint"
           [active]="activeCardIndices().has($index)"
           (cardClicked)="onCardClicked($index)"
         />

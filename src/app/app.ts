@@ -20,6 +20,10 @@ export class App {
   private static readonly CARD_ACTIVE_DURATION = 8000;
 
   activeCardIndices = signal<ReadonlySet<number>>(new Set());
+  /** Podpowiedzi "to jest klikalne" gasna po tapnieciu DOWOLNEJ karty — skoro
+      uzytkownik juz wie, ze karty reaguja, nie ma czego podpowiadac. Stan
+      siedzi tutaj, a nie w karcie, bo dotyczy calego rzedu naraz. */
+  hintsDismissed = signal(false);
   copied = signal(false);
   isDraggingCards = signal(false);
 
@@ -32,37 +36,17 @@ export class App {
       mobileHint: 'glow-pulse',
       title: 'Automate and\noptimize operation\neffortlessly',
       photoUrl: 'icon2.svg',
-      text: `The platform integrates advanced
-      Al tools into everyday business
-      activities, making them intuitive,
-      accessible, and immediately
-      valuable — regardless of
-      company size or technological
-      maturity.`,
+      text: 'The platform integrates advanced Al tools into everyday business activities, making them intuitive,accessible, and immediately valuable — regardless of company size or technological maturity.',
     },
     {
-      mobileHint: 'glow',
       title: 'Acces and\ndevelop AI-driven\nsolutions',
       photoUrl: 'icon3.svg',
-      text: `The platform integrates advanced
-      Al tools into everyday business
-      activities, making them intuitive,
-      accessible, and immediately
-      valuable — regardless of
-      company size or technological
-      maturity.`,
+      text: 'The platform integrates advanced Al tools into everyday business activities, making them intuitive,accessible, and immediately valuable — regardless of company size or technological maturity.',
     },
     {
-      mobileHint: 'glow',
       title: 'Build global partnership',
       photoUrl: 'icon1.svg',
-      text: `The platform integrates advanced
-      Al tools into everyday business
-      activities, making them intuitive,
-      accessible, and immediately
-      valuable — regardless of
-      company size or technological
-      maturity.`,
+      text: 'The platform integrates advanced Al tools into everyday business activities, making them intuitive,accessible, and immediately valuable — regardless of company size or technological maturity.',
     },
   ]);
 
@@ -71,6 +55,7 @@ export class App {
       return;
     }
 
+    this.hintsDismissed.set(true);
     this.toggleActiveCard(index);
   }
 

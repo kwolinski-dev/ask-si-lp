@@ -109,15 +109,17 @@
 
   /* Podpowiedz "to jest klikalne" — tylko pierwsza karta. Swiecacy luk obiega
      ramke, a cala karta ledwo zauwazalnie oddycha. Jedno i drugie gasnie na
-     dobre, gdy uzytkownik raz dotknie karty (klasa znika z szablonu). */
+     dobre, gdy uzytkownik tapnie DOWOLNA karte — app.ts przestaje wtedy
+     podawac hint i obie klasy znikaja z szablonu. */
   .card-item--glow {
     /* statyczna ramka przygaszona, zeby to luk byl najjasniejszym elementem —
        inaczej pelne biale obramowanie zupelnie go przykrywa */
     border-color: color-mix(in srgb, var(--wd-white) 40%, transparent);
   }
 
-  /* oddychanie jest osobna klasa, bo dostaje je tylko pierwsza karta —
-     pozostale maja sam luk */
+  /* oddychanie jest osobna klasa od luku, bo warianty podpowiedzi sa dwa
+     ('glow' i 'glow-pulse') — dzis podpowiedz dostaje tylko pierwsza karta,
+     pozostale nie maja zadnej */
   .card-item--pulse {
     animation: card-item-breathe 3.2s ease-in-out infinite;
   }

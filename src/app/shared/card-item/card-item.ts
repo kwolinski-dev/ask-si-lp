@@ -1,4 +1,4 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { CardHint, Item } from './card-item.model';
 
 @Component({
@@ -20,19 +20,13 @@ export class CardItem {
   active = input(false);
   cardClicked = output<void>();
 
-  /** glow gasnie na dobre, gdy uzytkownik raz dotknie karty */
-  protected readonly wasClicked = signal(false);
-
   /** luk swiatla — na kazdej karcie, ktora ma jakakolwiek podpowiedz */
-  protected readonly showGlow = computed(() => this.hint() !== undefined && !this.wasClicked());
+  protected readonly showGlow = computed(() => this.hint() !== undefined);
 
   /** oddychanie skali — tylko wariant 'glow-pulse' */
-  protected readonly showPulse = computed(
-    () => this.hint() === 'glow-pulse' && !this.wasClicked(),
-  );
+  protected readonly showPulse = computed(() => this.hint() === 'glow-pulse');
 
   onCardClick(): void {
-    this.wasClicked.set(true);
     this.cardClicked.emit();
   }
 }
