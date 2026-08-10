@@ -101,6 +101,8 @@ body {
     /* lvh, a nie bottom:0 — warstwa ma siegac ekranu przy ZWINIETYM pasku.
        Jest fixed, wiec jej wysokosc nie wchodzi do wysokosci dokumentu
        i nie robi scrolla. */
+
+       
     height: 100lvh;
     z-index: -1;
     background-image: url("assets/background-photo-mobile.png");
