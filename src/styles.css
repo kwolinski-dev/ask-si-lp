@@ -83,6 +83,29 @@ body {
     min-height: 100lvh;
   }
 
+  /* Canvas <html> to jedyna warstwa, ktora Z DEFINICJI pokrywa caly viewport
+     w kazdym stanie paska przegladarki — czarny pasek pod zdjeciem byl wlasnie
+     nia (kolor zgadzal sie z koncem gradientu ponizej). Skoro canvas tam
+     siega, niech pokazuje zdjecie, a nie plaski kolor: cokolwiek ominie
+     warstwa ::before, ma pod spodem ten sam kadr.
+
+     background-attachment: fixed ustawia obszar pozycjonowania na viewport,
+     czyli to samo kadrowanie co ::before — warstwy sie pokrywaja. Gdy silnik
+     ignoruje 'fixed' (WebKit na iOS), obszarem jest box <html>, ktory jest
+     tu praktycznie rowny viewportowi, wiec w najgorszym razie kadr lekko sie
+     rozjedzie na styku — nadal zdjecie, nie czarny pasek.
+
+     Gradient zostaje pod spodem jako ostatnia deska ratunku (overscroll poza
+     boxem <html>, gdzie no-repeat juz nie maluje obrazka). */
+  html {
+    background-image: url("assets/background-photo-mobile.png"),
+      linear-gradient(180deg, #2b120c 0%, #180505 100%);
+    background-repeat: no-repeat, no-repeat;
+    background-position: center center, center center;
+    background-size: cover, cover;
+    background-attachment: fixed, scroll;
+  }
+
   /* Layout ma wysokosc svh, ale ekran jest wyzszy (lvh) — gdy pasek Safari sie
      zwinie albo przy bounce odslania sie roznica, na ktorej widac bylo plaski
      background-color zamiast zdjecia. Zdjecie idzie wiec na osobna warstwe
