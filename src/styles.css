@@ -83,20 +83,26 @@ body {
     min-height: 100lvh;
   }
 
-  /* Canvas <html> to jedyna warstwa, ktora Z DEFINICJI pokrywa caly viewport
-     w kazdym stanie paska przegladarki — czarny pasek pod zdjeciem byl wlasnie
-     nia (kolor zgadzal sie z koncem gradientu ponizej). Skoro canvas tam
-     siega, niech pokazuje zdjecie, a nie plaski kolor: cokolwiek ominie
-     warstwa ::before, ma pod spodem ten sam kadr.
+  /* Zdjecie leci na canvas <html> i TYLKO tam — zadnej warstwy ::before.
+     Canvas jest jedyna powierzchnia, ktora z definicji pokrywa caly viewport
+     w kazdym stanie paska przegladarki, wiec nie ma czego latac.
+
+     Nie wracac do warstwy position: fixed. Blok zawierajacy taki element jest
+     na tym telefonie WEZSZY niz widoczny obszar tresci: zaczyna sie ~47 px
+     ponizej gory ekranu i konczy ~17 px nad paskiem nawigacji. Zmierzone na
+     zrzutach — najpierw w tych szparach widac bylo czarny pasek (gradient
+     ponizej), a gdy dolozylismy zdjecie takze na canvas, zostal widoczny szew:
+     obie warstwy licza 'cover' od boxa innej wysokosci, wiec maja inny kadr.
+     Jedna warstwa = zaden szew.
 
      background-attachment: fixed ustawia obszar pozycjonowania na viewport,
-     czyli to samo kadrowanie co ::before — warstwy sie pokrywaja. Gdy silnik
-     ignoruje 'fixed' (WebKit na iOS), obszarem jest box <html>, ktory jest
-     tu praktycznie rowny viewportowi, wiec w najgorszym razie kadr lekko sie
-     rozjedzie na styku — nadal zdjecie, nie czarny pasek.
+     wiec kadr nie zalezy od wysokosci dokumentu. Gdy silnik ignoruje 'fixed'
+     (WebKit na iOS), obszarem jest box <html> — tu praktycznie rowny
+     viewportowi, bo min-height: 100lvh — wiec kadr co najwyzej minimalnie
+     inny, nadal bez dziur.
 
-     Gradient zostaje pod spodem jako ostatnia deska ratunku (overscroll poza
-     boxem <html>, gdzie no-repeat juz nie maluje obrazka). */
+     Gradient zostaje pod spodem jako ostatnia deska ratunku: maluje overscroll
+     poza boxem <html>, gdzie no-repeat juz nie klada obrazka. */
   html {
     background-image: url("assets/background-photo-mobile.png"),
       linear-gradient(180deg, #2b120c 0%, #180505 100%);
@@ -106,44 +112,10 @@ body {
     background-attachment: fixed, scroll;
   }
 
-  /* Layout ma wysokosc svh, ale ekran jest wyzszy (lvh) — gdy pasek Safari sie
-     zwinie albo przy bounce odslania sie roznica, na ktorej widac bylo plaski
-     background-color zamiast zdjecia. Zdjecie idzie wiec na osobna warstwe
-     fixed: nie wplywa na wysokosc dokumentu (czyli nie psuje onepagera),
-     a rozmiar bierze z lvh + zapas, bo samo przyklejenie do viewportu
-     NIE wystarcza — patrz komentarz przy ::before. */
+  /* zdjecie maluje canvas <html> powyzej — body nie moze klasc drugiego,
+     bo dwie warstwy tego samego kadru daja widoczny szew */
   body {
     background-image: none;
-  }
-
-  body::before {
-    content: "";
-    position: fixed;
-    left: 0;
-    right: 0;
-    /* NIE bottom: 0 / inset: 0 — element fixed liczy sie do layout viewportu,
-       czyli stanu z ROZWINIETYM paskiem (svh). Strona jest wyzsza niz svh,
-       wiec da sie ja przewinac, a przy przewinieciu pasek iOS sie zwija
-       i odslania ~17 px, ktorych taka warstwa juz nie zakrywa — w szczelinie
-       widac bylo ciemny canvas <html>. lvh to viewport przy SCHOWANYM pasku,
-       czyli najwiekszy mozliwy, a --bleed doklada zapas ponad to: warstwa
-       wchodzi pod pasek nawigacji i pod pasek statusu, wiec zadne zwiniecie
-       paska ani bounce przy przewijaniu nie odsloni tla.
-
-       Zapas idzie symetrycznie (gora = dol), zeby kadr zostal wysrodkowany
-       tak jak byl — przy 2rem z kazdej strony cover skaluje zdjecie o ~0.2%
-       wiecej, czyli roznicy nie widac.
-
-       Pary deklaracji to fallback dla iOS < 15.4, gdzie vh i tak = lvh. */
-    --bleed: 2rem;
-    top: calc(-1 * var(--bleed));
-    height: calc(100vh + 2 * var(--bleed));
-    height: calc(100lvh + 2 * var(--bleed));
-    z-index: -1;
-    background-image: url("assets/background-photo-mobile.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
   }
 }
 
