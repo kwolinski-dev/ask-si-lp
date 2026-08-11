@@ -80,7 +80,7 @@ body {
   html,
   body {
     height: auto;
-    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   /* Layout ma wysokosc svh, ale ekran jest wyzszy (lvh) — gdy pasek Safari sie
