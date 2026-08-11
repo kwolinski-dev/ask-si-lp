@@ -80,7 +80,7 @@ body {
   html,
   body {
     height: auto;
-    min-height: calc(100svh + 3.5rem);
+    min-height: 100lvh;
   }
 
   /* Layout ma wysokosc svh, ale ekran jest wyzszy (lvh) — gdy pasek Safari sie
@@ -95,7 +95,18 @@ body {
   body::before {
     content: "";
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* NIE bottom: 0 / inset: 0 — element fixed liczy sie do layout viewportu,
+       czyli stanu z ROZWINIETYM paskiem (svh). Strona jest o 3.5rem wyzsza niz
+       svh, wiec da sie ja przewinac, a przy przewinieciu pasek iOS sie zwija
+       i odslania ~17 px, ktorych taka warstwa juz nie zakrywa — w szczelinie
+       widac bylo ciemny canvas <html>. lvh to viewport przy SCHOWANYM pasku,
+       czyli najwiekszy mozliwy, wiec zdjecie kryje ekran w kazdym stanie.
+       Pierwsza deklaracja to fallback dla iOS < 15.4, gdzie vh i tak = lvh. */
+    height: 100vh;
+    height: 100lvh;
     z-index: -1;
     background-image: url("assets/background-photo-mobile.png");
     background-repeat: no-repeat;
